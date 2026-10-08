@@ -34,7 +34,6 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
 
   return (
     <>
-      {/* Desktop Sidebar */}
       <aside className="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0 bg-white border-r border-slate-200">
 
         <div className="h-16 flex items-center px-6 border-b border-slate-200">
@@ -94,7 +93,7 @@ const Sidebar = ({ mobileOpen, setMobileOpen }) => {
 
       </aside>
 
-      {/* Mobile Sidebar */}
+      
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
 

@@ -47,7 +47,7 @@ const UserDetails = () => {
     <div className="min-h-screen bg-slate-100 p-4">
       <div className="max-w-2xl mx-auto">
 
-        {/* Back Button */}
+       
         <button
           onClick={() => navigate("/users")}
           className="flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-6"
@@ -63,7 +63,7 @@ const UserDetails = () => {
         ) : (
           <div className="bg-white border border-slate-200 rounded-lg p-6">
 
-            {/* Header */}
+            
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h1 className="text-2xl font-semibold text-slate-900">
@@ -86,10 +86,10 @@ const UserDetails = () => {
               </button>
             </div>
 
-            {/* User Information */}
+           
             <div className="space-y-4">
 
-              {/* Name */}
+             
               <div>
                 <p className="text-sm text-slate-500">
                   Name
@@ -100,7 +100,7 @@ const UserDetails = () => {
                 </p>
               </div>
 
-              {/* Email */}
+              
               <div>
                 <p className="text-sm text-slate-500">
                   Email
@@ -111,7 +111,7 @@ const UserDetails = () => {
                 </p>
               </div>
 
-              {/* Role */}
+              
               <div>
                 <p className="text-sm text-slate-500">
                   Role

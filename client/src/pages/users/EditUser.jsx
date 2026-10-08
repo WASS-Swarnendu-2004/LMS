@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../api/axios";
 
@@ -10,12 +10,14 @@ const EditUser = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    password: "",
     role: "sales",
   });
 
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const fetchUser = async () => {
     try {
@@ -29,13 +31,11 @@ const EditUser = () => {
       setFormData({
         name: user.name || "",
         email: user.email || "",
+        password: "",
         role: user.role || "sales",
       });
     } catch (error) {
-      setError(
-        error.response?.data?.message ||
-          "Unable to fetch user"
-      );
+      setError(error.response?.data?.message || "Unable to fetch user");
     } finally {
       setLoading(false);
     }
@@ -63,10 +63,7 @@ const EditUser = () => {
 
       navigate(`/users/${id}`);
     } catch (error) {
-      setError(
-        error.response?.data?.message ||
-          "Unable to update user"
-      );
+      setError(error.response?.data?.message || "Unable to update user");
     } finally {
       setUpdating(false);
     }
@@ -75,9 +72,7 @@ const EditUser = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-100 p-4">
-        <p className="text-slate-600">
-          Loading User...
-        </p>
+        <p className="text-slate-600">Loading User...</p>
       </div>
     );
   }
@@ -85,8 +80,6 @@ const EditUser = () => {
   return (
     <div className="min-h-screen bg-slate-100 p-4">
       <div className="max-w-2xl mx-auto">
-
-      
         <button
           onClick={() => navigate(`/users/${id}`)}
           className="flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-6"
@@ -96,29 +89,18 @@ const EditUser = () => {
         </button>
 
         <div className="bg-white border border-slate-200 rounded-lg p-6">
-
-         
           <div className="mb-6">
-            <h1 className="text-2xl font-semibold text-slate-900">
-              Edit User
-            </h1>
+            <h1 className="text-2xl font-semibold text-slate-900">Edit User</h1>
 
             <p className="text-sm text-slate-600 mt-1">
               Update user information
             </p>
           </div>
 
-          {error && (
-            <p className="text-red-600 text-sm mb-4">
-              {error}
-            </p>
-          )}
+          {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
 
           <form onSubmit={handleSubmit}>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
-            
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">
                   Name
@@ -134,7 +116,6 @@ const EditUser = () => {
                 />
               </div>
 
-              
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">
                   Email
@@ -150,7 +131,32 @@ const EditUser = () => {
                 />
               </div>
 
-            
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1">
+                  New Password
+                </label>
+
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="Leave empty to keep current password"
+                    className="w-full border border-slate-300 rounded-lg px-3 py-2 pr-10 outline-none focus:border-slate-500"
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700"
+                    title={showPassword ? "Hide password" : "Show password"}
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
+              </div>
+
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">
                   Role
@@ -162,25 +168,16 @@ const EditUser = () => {
                   onChange={handleChange}
                   className="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:border-slate-500"
                 >
-                  <option value="sales">
-                    Sales
-                  </option>
+                  <option value="sales">Sales</option>
 
-                  <option value="manager">
-                    Manager
-                  </option>
+                  <option value="manager">Manager</option>
 
-                  <option value="admin">
-                    Admin
-                  </option>
+                  <option value="admin">Admin</option>
                 </select>
               </div>
-
             </div>
 
-           
             <div className="flex items-center gap-3 mt-6">
-
               <button
                 type="button"
                 onClick={() => navigate(`/users/${id}`)}
@@ -196,9 +193,7 @@ const EditUser = () => {
               >
                 {updating ? "Updating..." : "Update User"}
               </button>
-
             </div>
-
           </form>
         </div>
       </div>

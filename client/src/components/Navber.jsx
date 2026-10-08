@@ -18,7 +18,7 @@ const Navbar = ({ setMobileOpen }) => {
   return (
     <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-4 sm:px-6">
 
-      {/* Left */}
+      
       <div className="flex items-center gap-3">
 
         <button
@@ -36,7 +36,7 @@ const Navbar = ({ setMobileOpen }) => {
 
       </div>
 
-      {/* Right */}
+      
       <div className="flex items-center gap-3">
 
         <div className="hidden sm:flex items-center gap-3">

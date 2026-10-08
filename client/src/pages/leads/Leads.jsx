@@ -188,7 +188,11 @@ const Leads = () => {
                   <th className="px-4 py-3 text-sm font-medium text-slate-600">
                     Status
                   </th>
-
+                      
+                  <th className="px-4 py-3 text-sm font-medium text-slate-600">
+                    Source
+                  </th>
+                      
                   <th className="px-4 py-3 text-sm font-medium text-slate-600">
                     Actions
                   </th>
@@ -207,6 +211,8 @@ const Leads = () => {
                     <td className="px-4 py-3 text-sm">{lead.company}</td>
 
                     <td className="px-4 py-3 text-sm">{lead.status}</td>
+
+                    <td className="px-4 py-3 text-sm">{lead.source}</td>
 
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
